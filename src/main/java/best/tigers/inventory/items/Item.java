@@ -1,15 +1,5 @@
 package best.tigers.inventory.items;
 
-public interface Item {
-  public String getName();
+import java.nio.file.Path;
 
-  public Integer getGoldValue();
-
-  public Double getWeightValue();
-
-  public String getIconPath();
-
-  public Boolean isStolen();
-
-  public Boolean isEnchanted();
-}
+public record Item(String name, boolean stolen, int goldValue, double weightValue, Path icon) {}

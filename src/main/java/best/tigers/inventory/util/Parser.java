@@ -17,19 +17,22 @@ public class Parser {
     return itemText;
   }
 
-  public static ParsedItem parseItem(String itemString) {
+  public static String cleanItemLine(String itemString) {
     var name = itemString;
-    boolean stolen = false;
-    if (itemString.contains(" [STOLEN]")) {
-      name = itemString.split(" [STOLEN]")[0];
-      stolen = true;
-    }
     name = stripDescription("sold", name);
     name = stripDescription("repaired", name);
     name = stripDescription("removed", name);
     name = stripDescription("added", name);
+    return name;
+  }
 
-    return new ParsedItem(name, stolen);
+  public static Post cleanItemPost(Post rawPost) {
+    var name = rawPost.content();
+    name = stripDescription("sold", name);
+    name = stripDescription("repaired", name);
+    name = stripDescription("removed", name);
+    name = stripDescription("added", name);
+    return new Post(name, rawPost.likeCount(), rawPost.repostCount());
   }
 
   public static Map<String, String> getItemMappingsForList(String listName) {
@@ -58,11 +61,13 @@ public class Parser {
     if (inputString.contains("Word of Power")) return false;
     if (inputString.contains("Objective")) return false;
     if (inputString.split(" ").length > 6) return false;
-    if (inputString.split(" ").length < 3) return false;
-    if (inputString.split(" ").length == 3 && inputString.toLowerCase().contains(" elf"))
-      return false;
+    if (inputString.contains("Plate Skirt")) return false;
     if (inputString.contains("Blessing")) return false;
     if (inputString.contains("Curse")) return false;
     return true;
+  }
+
+  public static boolean itemFilter(Post post) {
+    return itemFilter(post.content());
   }
 }

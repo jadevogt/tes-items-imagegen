@@ -1,10 +1,14 @@
 package best.tigers.inventory.ui;
 
+import best.tigers.inventory.items.Item;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class InventoryRow implements InventoryComponent {
@@ -19,28 +23,17 @@ public class InventoryRow implements InventoryComponent {
   public final Rectangle textArea;
   public final Rectangle goldArea;
   public final Rectangle weightArea;
-  // public static final int TEXT_AREA_OFFSET_X = 124;
   private final BufferedImage img;
-  private final String name;
-  private final String iconName;
-  private final int goldValue;
-  private final double weightValue;
+  private final Item item;
 
-  public InventoryRow(String name, String icon, int goldValue, double weightValue) {
+  public InventoryRow(Item item) {
     this.img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
-    this.name = name;
-    this.iconName = icon;
-    this.goldValue = goldValue;
-    this.weightValue = weightValue;
+    this.item = item;
     this.textArea = new Rectangle(0, 0, (int) (TEXT_AREA_WIDTH * 0.8), HEIGHT);
     this.goldArea = new Rectangle(GOLD_AREA_OFFSET_X, 0, (int) (GOLD_AREA_WIDTH * 0.8), HEIGHT);
     this.weightArea =
         new Rectangle(WEIGHT_AREA_OFFSET_X, 0, (int) (WEIGHT_AREA_WIDTH * 0.8), HEIGHT);
     registerFont();
-  }
-
-  public InventoryRow(String name, String icon, int goldValue) {
-    this(name, icon, goldValue, Math.floor(Math.random() * 100));
   }
 
   @Override
@@ -94,16 +87,20 @@ public class InventoryRow implements InventoryComponent {
     Graphics2D unscaled = unscaledImg.createGraphics();
     setOblivionFont(unscaled);
     FontMetrics metrics = unscaled.getFontMetrics(unscaled.getFont());
+    String strValue = BigDecimal.valueOf(weight)
+        .setScale(1, RoundingMode.HALF_UP)
+        .toString();
+    if (strValue.endsWith("0")) strValue = strValue.split("\\.")[0];
     int x =
         (((int) weightArea.getWidth()
-                - (int) metrics.getStringBounds(Integer.toString((int) weight), g).getWidth())
+                - (int) metrics.getStringBounds(strValue, g).getWidth())
             / 2);
     int y =
         (int) weightArea.getY()
             + (((int) weightArea.getHeight() - metrics.getHeight()) / 2)
             + metrics.getAscent();
     unscaled.setColor(new Color(109, 62, 39));
-    unscaled.drawString(Integer.toString((int) weight), x, y);
+    unscaled.drawString(strValue, x, y);
     g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     g.setRenderingHint(
         RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -187,11 +184,11 @@ public class InventoryRow implements InventoryComponent {
   }
 
   public void drawRow() {
-    InventoryIcon icon = new InventoryIcon(iconName);
+    InventoryIcon icon = new InventoryIcon(item);
     Graphics2D g = img.createGraphics();
     g.drawImage(icon.buildImage(), 0, 0, InventoryIcon.WIDTH, InventoryIcon.HEIGHT, null);
-    drawTextArea(name, g);
-    drawGoldArea(goldValue, g);
-    drawWeightArea(weightValue, g);
+    drawTextArea(item.name(), g);
+    drawGoldArea(item.goldValue(), g);
+    drawWeightArea(item.weightValue(), g);
   }
 }

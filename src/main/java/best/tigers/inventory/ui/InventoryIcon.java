@@ -1,5 +1,7 @@
 package best.tigers.inventory.ui;
 
+import best.tigers.inventory.items.Item;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -9,6 +11,7 @@ import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 public class InventoryIcon implements InventoryComponent {
   public static final int WIDTH = 120;
@@ -18,11 +21,11 @@ public class InventoryIcon implements InventoryComponent {
   public static final int INSET_X = 15;
   public static final int INSET_Y = 20;
   private BufferedImage img;
-  private String iconName;
+  private final Item item;
 
-  public InventoryIcon(String iconName) {
+  public InventoryIcon(Item item) {
     this.img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
-    this.iconName = iconName;
+    this.item = item;
   }
 
   public static BufferedImage resize(BufferedImage img, int width, int height) {
@@ -91,22 +94,29 @@ public class InventoryIcon implements InventoryComponent {
 
   public void drawIcon() {
     BufferedImage icon;
+    BufferedImage stolenIndicator;
     try {
-      icon = ImageIO.read(new File(iconName));
+      icon = ImageIO.read(item.icon().toFile());
+    } catch (IOException ignored) {
+      return;
+    }
+    try {
+      stolenIndicator = ImageIO.read(new File("./assets/icons/stolen.png"));
     } catch (IOException ignored) {
       return;
     }
     Graphics2D g = img.createGraphics();
     g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
     g.setRenderingHint(
         RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
     icon = resize(icon, INSET_WIDTH, INSET_HEIGHT);
-    if (iconName.contains("unique")) {
+    if (item.icon().toString().contains("unique")) {
       icon = dropShadow(icon);
     }
     g.drawImage(icon, INSET_X, INSET_Y, INSET_WIDTH, INSET_HEIGHT, null);
-    // g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+    if (item.stolen()) {
+      g.drawImage(stolenIndicator, 15, 71, 32, 32, null);
+    }
   }
 
   @Override

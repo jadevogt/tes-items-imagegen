@@ -9,10 +9,9 @@ Claymore|claymore
 Crossbow|bow
 Cutlass|unique
 Dagger|dagger
-Dai-Katana|greatsword
-dai-katana|greatsword
+Dai-Katana|claymore
 Dart|unique
-Greatsword|longsword
+Greatsword|claymore
 Halberd|waraxe
 Katana|unique
 Letter-Opener|dagger
@@ -33,6 +32,8 @@ Shortsword|shortsword
 Longsword|longsword
 Broadsword|longsword
 Saber|longsword
+Knife|dagger
+knife|dagger
 Tanto|shortsword
 Waraxe|waraxe
 Warhammer|hammer
