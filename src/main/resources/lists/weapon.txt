@@ -1,0 +1,41 @@
+Axe|battleaxe
+Battleaxe|battleaxe
+War Axe|waraxe
+Long Bow|bow
+Bow|bow
+Short Bow|bow
+Club|unique
+Claymore|claymore
+Crossbow|bow
+Cutlass|unique
+Dagger|dagger
+Dai-Katana|greatsword
+dai-katana|greatsword
+Dart|unique
+Greatsword|longsword
+Halberd|waraxe
+Katana|unique
+Letter-Opener|dagger
+letter-opener|dagger
+Mace|mace
+Nunchucks|unique
+Pickaxe|unique
+Pitchfork|unique
+Plank|unique
+Scimitar|longsword
+Shortsword|shortsword
+Throwing Stars|unique
+Knife|dagger
+Shovel|unique
+Staff|staff
+Spear|unique
+Shortsword|shortsword
+Longsword|longsword
+Broadsword|longsword
+Saber|longsword
+Tanto|shortsword
+Waraxe|waraxe
+Warhammer|hammer
+Whip|unique
+Flail|unique
+Sword|shortsword

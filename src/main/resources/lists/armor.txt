@@ -1,0 +1,76 @@
+Cuirass|cuirass  
+Greaves|greaves  
+Gauntlets|gauntlets  
+Boots|boots  
+Shoes|unique  
+Helm|helmet  
+Helmet|helmet  
+Pants|unique  
+Apron|unique  
+Shield|shield  
+Shirt|unique  
+Dress|unique  
+Knee-Highs|unique  
+Bra|unique  
+Workout Gear|unique  
+Yoga Pants|unique  
+Swim Trunks|unique  
+Panties|unique  
+Whitey Tighties|unique  
+Overalls|unique  
+Dress Shirt|unique  
+Dress Pants|unique  
+Plate Gauntlets|gauntlets  
+Plate Skirt|unique  
+Plate Boots|boots  
+Sweater|unique  
+Uggs|unique  
+Air Jordans|unique  
+Crocs|unique  
+Hoodie|unique  
+Khaki Pants|unique  
+Khaki Shorts|unique  
+Jeans|unique  
+Cargo Pants|unique  
+Cargo Shorts|unique  
+Bikini|unique  
+Tuxedo|unique  
+Graphic T-Shirt|unique  
+Blazer|unique  
+Sports Jersey|unique  
+Flip-Flops|unique  
+Jorts|unique  
+Jumper|unique  
+Waders|unique  
+Clogs|unique  
+Long Johns|unique  
+Trenchcoat|unique  
+Leggings|unique  
+Hat|unique  
+Sneakers|unique  
+Pauldrons|cuirass 
+Bracers|gauntlets 
+Buckler|shield  
+Gloves|gauntlets
+Fingerless Gloves|unique  
+Tank-Top|unique  
+Cloak|unique  
+Robe|unique  
+Tunic|unique  
+Hood|unique  
+Belt|unique  
+Choker|unique  
+Socks|unique  
+Vest|unique  
+Cardigan|unique  
+Jeggings|unique  
+Cap|unique  
+Bloomers|unique  
+Highwaters|unique  
+Sweatpants|unique  
+Stockings|unique  
+Scarf|unique  
+Polo Shirt|unique  
+Collar|unique  
+Raiment|unique  
+Aegis|helmet  
